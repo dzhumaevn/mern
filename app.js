@@ -14,7 +14,7 @@ app.use('/api/auth', auth);
 app.use('/api/link', link);
 app.use('/t', redirect);
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'production') {
     app.use('/', express.static(path.join(path.resolve(), 'client', 'build')));
 
     app.get('*', (req, res) => {
