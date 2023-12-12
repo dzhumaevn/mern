@@ -14,11 +14,11 @@ app.use('/api/auth', auth);
 app.use('/api/link', link);
 app.use('/t', redirect);
 
-if (process.env.NODE_ENV === 'production') {
-    app.use('/', express.static(path.join(__dirname, 'client', 'build')));
+if (process.env.NODE_ENV !== 'production') {
+    app.use('/', express.static(path.join(path.resolve(), 'client', 'build')));
 
     app.get('*', (req, res) => {
-        res.sendFile(express.resolve(__dirname, 'client', 'build', 'index.html'));
+        res.sendFile(express.resolve(path.resolve(), 'client', 'build', 'index.html'));
     });
 }
 
